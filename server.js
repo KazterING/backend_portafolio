@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { Client } = require('pg');
@@ -6,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const connectionString = 'postgresql://neondb_owner:npg_9a4CgozZSpeG@ep-jolly-unit-adeg1kwl-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
+const connectionString = process.env.DATABASE_URL;
 
 app.post('/send', async (req, res) => {
     const { name, email, subject, message } = req.body;
@@ -27,7 +28,7 @@ app.post('/send', async (req, res) => {
     }
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Servidor backend escuchando en http://localhost:${PORT}`);
 });

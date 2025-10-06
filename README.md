@@ -27,6 +27,7 @@ Este proyecto contiene un API REST desarrollado con Node.js y Express que maneja
 - PostgreSQL
 - pg (cliente PostgreSQL para Node.js)
 - cors
+- dotenv (gestión de variables de entorno)
 
 ## Endpoint
 
@@ -54,11 +55,29 @@ Recibe los datos del formulario de contacto y los guarda en la base de datos.
 ## Instalación y uso
 
 1. Clona el repositorio
-2. Instala las dependencias: `npm install express cors pg`
-3. Ejecuta el script de inicialización: `node init_db.js`
-4. Inicia el servidor: `node server.js`
+2. Instala las dependencias: `npm install`
+3. Copia el archivo `.env.example` a `.env` y configura tus variables de entorno:
+   ```bash
+   cp .env.example .env
+   ```
+4. Edita el archivo `.env` con tus credenciales de base de datos
+5. Ejecuta el script de inicialización: `node init_db.js`
+6. Inicia el servidor: `npm start` o `node server.js`
 
 El servidor se ejecutará en `http://localhost:3001`.
+
+## Seguridad
+
+Este proyecto utiliza variables de entorno para proteger información sensible como credenciales de base de datos. 
+
+**Archivos importantes para la seguridad:**
+- `.env`: Contiene las variables de entorno reales (NO subir al repositorio)
+- `.env.example`: Plantilla con las variables necesarias (sí subir al repositorio)
+- `.gitignore`: Configurado para ignorar archivos sensibles
+
+**Variables de entorno requeridas:**
+- `DATABASE_URL`: Cadena de conexión completa a PostgreSQL
+- `PORT`: Puerto donde correrá el servidor (opcional, por defecto 3001)
 
 ## Base de datos
 
